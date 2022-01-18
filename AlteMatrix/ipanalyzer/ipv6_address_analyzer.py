@@ -1,15 +1,20 @@
-# IPv6 Address Analyzer by Ir0n-c0d3X
+# IPv6 Address Analyzer by AyomideA-S
+# NOTE: This code involves knowledge acquired from David Bombal's "Ethical Hacking for Beginners" course on Udemy!
+# You can access the course at https://www.udemy.com/course/pratcical-ethical-hacking-for-beginners/?src=sac&kw=Ethical+hacking+for+beginner
 
 import sys, atexit, io
 buffer = io.BytesIO()
 sys.stdout.buffer
 @atexit.register
 
+# write function
 def write():
     sys.__stdout__.write(buffer.getvalue().decode("utf-8"))
 
 import re
+# ipv6 function
 def ipv6(IP: str, Mask: str | None = ..., file: str | None = None):
+    # check for writable file
     if file != None:
         sys.stdout = open(file, 'w')
 
@@ -20,7 +25,7 @@ def ipv6(IP: str, Mask: str | None = ..., file: str | None = None):
 
     if IP[-1] == '' and IP[-2] == '':
         IP.pop(-1)
-
+    # ipv6 address analysis
     try:
         l = len(IP)
         if l != 8:
@@ -40,6 +45,7 @@ def ipv6(IP: str, Mask: str | None = ..., file: str | None = None):
     except ValueError:
         raise ValueError("Invalid IPv6 address entered!")
 
+    # output
     print("Network Portion:", ':'.join(IP[:4]))
     print("Host Portion:", ':'.join(IP[4:]))
     print("Global Internet:", IP[0])
@@ -51,7 +57,9 @@ def ipv6(IP: str, Mask: str | None = ..., file: str | None = None):
     if file != None:
         sys.stdout.close()
 
+# silent ipv6 function
 def ipv6_s(IP: str, file: str | None = None):
+    # check for writable file
     if file != None:
         sys.stdout = open(file, 'w')
 
@@ -59,6 +67,7 @@ def ipv6_s(IP: str, file: str | None = None):
     IP = re.split(':|%|/', IP)
     if IP[-1] == '' and IP[-2] == '':IP.pop(-1)
     l = len(IP)
+    # ipv6 address analysis
     try:
         if l != 8:
             x = 8 - l
@@ -73,13 +82,16 @@ def ipv6_s(IP: str, file: str | None = None):
                 i = str(('0'*l) + i)
                 IP.pop(h)
                 IP.insert(h, i)
-    except ValueError:raise ValueError("Invalid IPv6 address entered!")
+    except ValueError:
+        raise ValueError("Invalid IPv6 address entered!")
+    # output
     print("Network:", ':'.join(IP[:4]))
     print("Host:", ':'.join(IP[4:]))
 
     if file != None:
         sys.stdout.close()
 
+# expand function
 def expand(IP: str, Mask: str | None = ...):
     if IP == None:
         return ValueError("The address argument cannot be empty!")
@@ -108,10 +120,12 @@ def expand(IP: str, Mask: str | None = ...):
     except ValueError:
         raise ValueError("Invalid IPv6 address entered!")
 
+    # print output
     if Mask == '':
         print("Expanded Notation:", ':'.join(IP))
     else:
         print("Expanded Notation:", ':'.join(IP), '/'+Mask)
+# silent expand function
 def expand_s(IP: str, Mask: str | None = ...):
     if IP == None:return ValueError("The address argument cannot be empty!")
     IP = re.split(':|%|/', IP)
@@ -131,10 +145,15 @@ def expand_s(IP: str, Mask: str | None = ...):
                 i = str(('0'*l) + i)
                 IP.pop(h)
                 IP.insert(h, i)
-    except ValueError:raise ValueError("Invalid IPv6 address entered!")
-    if Mask == '':return ':'.join(IP)
-    else:return (':'.join(IP), '/'+Mask)
+    except ValueError:
+        raise ValueError("Invalid IPv6 address entered!")
+    # return output
+    if Mask == '':
+        return ':'.join(IP)
+    else:
+        return (':'.join(IP), '/'+Mask)
 
+# abbreviate function
 def abbreviate(IP: str, Mask: str | None = ...):
     if IP == None:
         return ValueError("The address argument cannot be empty!")
@@ -213,14 +232,20 @@ def abbreviate(IP: str, Mask: str | None = ...):
                 continue
     except IndexError:
         s = set(s)
-        
+    
+    # print output
     if x > 0:
         col = '::'
-        if Mask == '':print("Compressed Notation:", ":".join(IP[:q]) + col + ":".join(IP[p+1:]))
-        else:print("Compressed Notation:", ":".join(IP[:q]) + col + ":".join(IP[p+1:]), "/"+Mask)
+        if Mask == '':
+            print("Compressed Notation:", ":".join(IP[:q]) + col + ":".join(IP[p+1:]))
+        else:
+            print("Compressed Notation:", ":".join(IP[:q]) + col + ":".join(IP[p+1:]), "/"+Mask)
     else:
-        if Mask == '':print("Compressed Notation:", ":".join(IP))
-        else:print("Compressed Notation:", ":".join(IP), "/"+Mask)
+        if Mask == '':
+            print("Compressed Notation:", ":".join(IP))
+        else:
+            print("Compressed Notation:", ":".join(IP), "/"+Mask)
+# silent abbreviate function
 def abbreviate_s(IP: str, Mask: str | None = ...):
     if IP == None:return ValueError("The address argument cannot be empty!")
     IP = re.split(':|%|/', IP)
@@ -290,10 +315,16 @@ def abbreviate_s(IP: str, Mask: str | None = ...):
                 s.remove(p)
                 continue
     except IndexError:s = set(s)
+
+    # return output
     if x > 0:
         col = '::'
-        if Mask == '':return (":".join(IP[:q]) + col + ":".join(IP[p+1:]))
-        else:return (":".join(IP[:q]) + col + ":".join(IP[p+1:]), "/"+Mask)
+        if Mask == '':
+            return (":".join(IP[:q]) + col + ":".join(IP[p+1:]))
+        else:
+            return (":".join(IP[:q]) + col + ":".join(IP[p+1:]), "/"+Mask)
     else:
-        if Mask == '':return (":".join(IP))
-        else:return (":".join(IP), "/"+Mask)
+        if Mask == '':
+            return (":".join(IP))
+        else:
+            return (":".join(IP), "/"+Mask)
