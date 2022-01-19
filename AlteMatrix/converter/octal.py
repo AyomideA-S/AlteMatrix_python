@@ -1,4 +1,9 @@
+# NOTE: All functions are in pairs of the main function and an optional "silent" function 
+# which would simply return a value instead of printing
+
+# list of invalid octal figures
 inv = ['8','9']
+# octal to binary function
 def octal_to_binary(data: str):
     print("Octal value:",data)
     for digit in data:
@@ -21,6 +26,7 @@ def octal_to_binary_s(data: str):
             raise ValueError("Non-octal number entered!")
     return bnr
 
+# octal to decimal function
 def octal_to_decimal(data: str):
     print("Octal value:",data)
     decimal = 0
@@ -43,6 +49,7 @@ def octal_to_decimal_s(data: str):
             raise ValueError("Non-octal number entered!")
     return decimal
 
+# octal to hexadecimal function
 def octal_to_hexadecimal(data: str):
     print("Octal value:",data)
     for digit in data:
@@ -65,6 +72,7 @@ def octal_to_hexadecimal_s(data: str):
             raise ValueError("Non-octal number entered!")
     return hxd
 
+# octal to text function
 def octal_to_text(data: str):
     data = data.split()
     l = []

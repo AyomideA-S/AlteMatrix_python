@@ -1,3 +1,7 @@
+# NOTE: All functions are in pairs of the main function and an optional "silent" function 
+# which would simply return a value instead of printing
+
+# hexadecimal to binary function
 def to_binary(data: str):
     print("Hexadecimal value:",data)
     try:
@@ -14,7 +18,7 @@ def to_binary_s(data: str):
         raise ValueError("Non-hexadecimal number entered!")
     return bnr
 
-
+# hexadecimal to octal function
 def to_octal(data: str):
     print("Hexadecimal value:",data)
     try:
@@ -31,6 +35,7 @@ def to_octal_s(data: str):
         raise ValueError("Non-hexadecimal number entered!")
     return octal
 
+# hexadecimal to decimal function
 def to_decimal(data: str):
     print("Hexadecimal value:",data)
     try:
@@ -45,6 +50,7 @@ def to_decimal_s(data: str):
         raise ValueError("Non-hexadecimal number entered!")
     return decimal
 
+# hexadecimal to text function
 def to_text(data: str):
     data = data.split()
     l = []

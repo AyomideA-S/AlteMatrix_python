@@ -1,3 +1,7 @@
+# NOTE: All functions are in pairs of the main function and an optional "silent" function 
+# which would simply return a value instead of printing
+
+# decimal to binary function
 def to_binary(data: str):
     print("Decimal value:",data)
     try:
@@ -14,6 +18,7 @@ def to_binary_s(data: str):
         raise ValueError("Non-decimal value entered!")
     return bnr
 
+# decimal to octal function
 def to_octal(data: str):
     print("Decimal value:",data)
     try:
@@ -30,6 +35,7 @@ def to_octal_s(data: str):
         raise ValueError("Non-decimal value entered!")
     return octal
 
+# decimal to hexadecimal
 def to_hexadecimal(data: str):
     print("Decimal value:",data)
     try:
@@ -46,6 +52,7 @@ def to_hexas(data: str):
         raise ValueError("Non-decimal value entered!")
     return hxd
 
+# decimal to text function
 def to_text(data: str):
     data = data.split()
     l = []

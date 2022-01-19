@@ -1,4 +1,8 @@
+# NOTE: All functions are in pairs of the main function and an optional "silent" function 
+# which would simply return a value instead of printing
+# list of invalid binary figures
 inv = ['2','3','4','5','6','7','8','9']
+# binary to decimal function
 def to_decimal(data: str):
     print("Binary value:",data)
     decimal = 0
@@ -21,6 +25,7 @@ def to_decimal_s(data: str):
             raise ValueError("Non-binary number entered!")
     return decimal
 
+# binary to octal function
 def to_octal(data: str):
     print("Binary value:",data)
     for digit in data:
@@ -43,6 +48,7 @@ def to_octal_s(data: str):
             raise ValueError("Non-binary number entered!")
     return octal
 
+# binary to hexadecimal function
 def to_hexadecimal(data: str):
     print("Binary value:",data)
     for digit in data:
@@ -65,6 +71,7 @@ def to_hexadecimal_s(data: str):
             raise ValueError("Non-binary number entered!")
     return hxd
 
+# binary to text function
 def to_text(data: str):
     data = data.split()
     l = []
