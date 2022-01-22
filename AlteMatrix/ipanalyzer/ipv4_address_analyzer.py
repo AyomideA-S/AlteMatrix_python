@@ -97,7 +97,7 @@ def ipv4(IP: str, Subnet: str | None = ..., Mask: str | None = ..., file: str | 
         print("Block Size:", l)
         print("Subnets:", 256//l)
 
-        for f in range(0,256,l):
+        for f in range(0,257,l):
             if f > y:
                 break
         z = IPv4.index(y)
