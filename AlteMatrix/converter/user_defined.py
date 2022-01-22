@@ -34,6 +34,7 @@ def udf(source: int, destination: int | None = 10):
     l = list(map(str,l))
     # print result
     print(f'Base {destination} value:',''.join(l[::-1]))
+
 # silent "user-defined" function
 def udf_s(source: int, destination: int | None = 10):
     # check for invalid arguments
@@ -65,6 +66,8 @@ def udt(value: str | None = None, source: str | None = "10", destination: str | 
     if readfile != None:
         sys.stdin = open(readfile, 'r')
         value = sys.stdin.read()
+        # close the file
+        sys.stdin.close()
     elif value == None:
         raise ValueError("You have not supplied an input!")
     # check for writable file as argument
@@ -138,12 +141,19 @@ def udt(value: str | None = None, source: str | None = "10", destination: str | 
         l = value.split()
     # print final conversion result
     print(f'{hit}:\n'+''.join(l))
+
+    # close the file
+    if writefile != None:
+        sys.stdout.close()
+
 # "user-defined text" function
 def udt_s(value: str | None = None, source: str | None = "10", destination: str | None = "txt", readfile: str | None = None):
     # check for readable file as argument
     if readfile != None:
         sys.stdin = open(readfile, 'r')
         value = sys.stdin.read()
+        # close the file
+        sys.stdin.close()
     elif value == None:
         raise ValueError("You have not supplied an input!")
 
