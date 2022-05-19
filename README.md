@@ -87,3 +87,8 @@ Try help(fucntion_name) to learn more about a function.
 Follow [@codingpeps](https://www.instagram.com/codingpeps/) 
 
 :octocat:
+
+
+
+# Quick Note:
+I'll be archiving this repository till further notice, shifting development to terminal-based CLI for the program.
